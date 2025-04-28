@@ -54,25 +54,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
     const formMessage = document.getElementById('form-message');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+// Replace the form submission code with this:
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = {
+            name: this.name.value,
+            email: this.email.value,
+            subject: this.subject.value,
+            message: this.message.value
+        };
+        
+        try {
+            const response = await fetch('/.netlify/functions/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
             
-            // Simulate form submission
-            formMessage.textContent = 'Message sent successfully!';
-            formMessage.classList.remove('error');
-            formMessage.classList.add('success');
-            formMessage.style.display = 'block';
+            const data = await response.json();
             
-            // Reset form
-            this.reset();
-            
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                formMessage.style.display = 'none';
-            }, 5000);
-        });
-    }
+            if (response.ok) {
+                formMessage.textContent = 'Message sent successfully!';
+                formMessage.classList.remove('error');
+                formMessage.classList.add('success');
+            } else {
+                throw new Error(data.error || 'Failed to send message');
+            }
+        } catch (error) {
+            formMessage.textContent = error.message;
+            formMessage.classList.remove('success');
+            formMessage.classList.add('error');
+        }
+        
+        formMessage.style.display = 'block';
+        this.reset();
+        
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+        }, 5000);
+    });
+}
     
     // Add animation to elements when they come into view
     const animateOnScroll = function() {
