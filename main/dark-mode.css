@@ -1,0 +1,70 @@
+/* Dark Mode Styles */
+body {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+
+header {
+    background-color: rgba(16, 0, 43, 0.95) !important;
+}
+
+header.scrolled {
+    background-color: rgba(16, 0, 43, 0.98) !important;
+}
+
+nav a {
+    color: var(--light-color) !important;
+}
+
+#theme-toggle {
+    color: var(--light-color);
+}
+
+#theme-toggle:hover {
+    color: var(--primary-light);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hero {
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.1) 0%, rgba(16, 0, 43, 1) 100%) !important;
+}
+
+.stat-card,
+.skill-category,
+.project-card,
+.contact-form {
+    background-color: var(--dark-gray) !important;
+    color: var(--light-color);
+}
+
+.project-tech span {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-color);
+}
+
+.form-group input,
+.form-group textarea {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-color);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.3);
+}
+
+.footer-links a,
+.footer-brand p {
+    color: var(--light-gray) !important;
+}
+
+.btn.secondary {
+    color: var(--primary-light);
+    border-color: var(--primary-light);
+}
+
+.btn.secondary:hover {
+    background-color: var(--primary-light);
+    color: var(--dark-color);
+}
